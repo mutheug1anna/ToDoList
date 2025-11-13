@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="padding: 2rem; background-color: #0B3C5D; color: white; min-height: 100vh;">
+
+    <h1 style="text-align: center; color: #6495ED;">Welcome to Your Dashboard</h1>
+
+    <div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 3rem; gap: 2rem;">
+
+        <!-- Tasks Card -->
+        <a href="{% url 'tasks_list' %}" style="text-decoration: none;">
+            <div style="background-color: #6495ED; padding: 2rem; border-radius: 10px; width: 200px; text-align: center;">
+                <h2>Tasks</h2>
+                <p>View your tasks</p>
+            </div>
+        </a>
+
+        <!-- Users Card -->
+        <a href="{% url 'users_list' %}" style="text-decoration: none;">
+            <div style="background-color: #6495ED; padding: 2rem; border-radius: 10px; width: 200px; text-align: center;">
+                <h2>Users</h2>
+                <p>Manage users</p>
+            </div>
+        </a>
+
+        <!-- Notifications Card -->
+        <a href="{% url 'notifications_list' %}" style="text-decoration: none;">
+            <div style="background-color: #6495ED; padding: 2rem; border-radius: 10px; width: 200px; text-align: center;">
+                <h2>Notifications</h2>
+                <p>See alerts</p>
+            </div>
+        </a>
+
+        {% comment %} <!-- Projects Card -->
+        <a href="{% url 'projects_list' %}" style="text-decoration: none;">
+            <div style="background-color: #6495ED; padding: 2rem; border-radius: 10px; width: 200px; text-align: center;">
+                <h2>Projects</h2>
+                <p>View projects</p>
+            </div>
+        </a> {% endcomment %}
+
+    </div>
+</div>
+{% endblock %}
+
