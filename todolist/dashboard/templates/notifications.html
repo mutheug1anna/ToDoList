@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Notifications Lists{% endblock %}
+{% block content %}
+<h1>Notifications Lists</h1>
+
+{% for notification in notifications %}
+<div class="card">
+    <h2>{{ notification.title }}</h2>
+    <p>Status: {{ notification.status }}</p>
+</div>
+{% empty %}
+<p>No notifications available.</p>
+{% endfor %}
+
+{% endblock %}
