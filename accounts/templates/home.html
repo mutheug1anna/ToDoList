@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome to TaskFlow - Your Ultimate To-Do List{% endblock title %}
+
+{% block content %}
+<style>
+    /* ------------------------------------- */
+    /* Custom Styling for the Home Page */
+    /* ------------------------------------- */
+
+    /* Apply the gradient background to the body specifically for this page */
+    body {
+        background: linear-gradient(to bottom, #a0c4ff, #457b9d) !important;
+        color: #ffffff;
+    }
+
+    .home-container {
+        font-family: 'Roboto', sans-serif;
+        text-align: center;
+        padding: 50px 20px;
+        margin: 0 auto;
+        max-width: 1000px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .logo-text {
+        font-family: 'Fredoka One', cursive;
+        font-size: 64px;
+        margin-bottom: 5px;
+        color: #1d3557; /* Dark blue for contrast */
+        text-shadow: 4px 4px #a8dadc; /* Light shadow */
+        line-height: 1;
+    }
+
+    .subtitle {
+        font-size: 24px;
+        margin-bottom: 40px;
+        text-shadow: 1px 1px #1d3557;
+        font-weight: 300;
+    }
+
+    /* Call-to-action button styling */
+    a.button {
+        display: inline-block;
+        padding: 18px 40px;
+        background-color: #e63946; /* Vibrant Red */
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: bold;
+        font-size: 20px;
+        letter-spacing: 1px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        transition: transform 0.2s, background 0.3s;
+        margin-bottom: 50px;
+    }
+    a.button:hover {
+        background-color: #d1303c;
+        transform: scale(1.05) translateY(-2px);
+    }
+    
+    /* Feature cards section */
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+        width: 100%;
+        text-shadow: none;
+    }
+
+    .feature-card {
+        background-color: rgba(255, 255, 255, 0.15); /* Slightly transparent white */
+        border-radius: 15px;
+        padding: 25px;
+        text-align: left;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature-card h3 {
+        color: #f1faee; /* Off-white */
+        font-family: 'Fredoka One', cursive;
+        font-size: 24px;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .feature-card p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+</style>
+
+<div class="home-container">
+    
+    <!-- Hero Section -->
+    <h1 class="logo-text">TaskFlow</h1>
+    <p class="subtitle">Plan it, do it, tick it off — and make every day awesome!</p>
+
+    <!-- Call-to-action button -->
+    <a href="{% url 'login' %}" class="button">Get Started for Free</a>
+
+    <!-- Features Section -->
+    <div class="features-grid">
+        
+        <div class="feature-card">
+            <h3><img src="https://img.icons8.com/emoji/48/ffffff/check-mark-emoji.png" alt="Checkmark Icon" style="width:30px;"> Organized Tasks</h3>
+            <p>Effortlessly organize your daily, weekly, and long-term goals. Use custom lists to separate work, personal, and project tasks, keeping everything neat and tidy.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h3><img src="https://img.icons8.com/emoji/48/ffffff/alarm-clock-emoji.png" alt="Clock Icon" style="width:30px;"> Timely Reminders</h3>
+            <p>Never miss a deadline again. Our integrated notification system ensures you receive timely email and platform reminders for important tasks, giving you peace of mind.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3><img src="https://img.icons8.com/emoji/48/ffffff/memo-emoji.png" alt="Memo Icon" style="width:30px;"> Detailed Notes</h3>
+            <p>Add rich descriptions, sub-tasks, and necessary attachments to every to-do item. Everything you need to complete a task is right where you need it.</p>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

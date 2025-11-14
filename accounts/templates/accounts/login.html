@@ -1,0 +1,89 @@
+
+
+{% block title %}User Registration{% endblock title %}
+
+{% block content %}
+<style>
+    /* Styling for the centered container */
+    .container {
+        max-width: 420px;
+        margin: 5vh auto; /* 5% viewport height margin top/bottom */
+        padding: 40px;
+        background-color: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    h1 {
+        color: #1d3557;
+        font-size: 28px;
+        margin-bottom: 25px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+    }
+    form p {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+    input[type="text"], input[type="password"], input[type="email"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-sizing: border-box; /* Important for padding/border not affecting width */
+        transition: border-color 0.3s;
+    }
+    input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+        border-color: #457b9d;
+        outline: none;
+    }
+    button[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background-color: #e63946;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+        margin-top: 15px;
+    }
+    button[type="submit"]:hover {
+        background-color: #a82e38;
+    }
+    .login-link {
+        display: block;
+        margin-top: 25px;
+        font-size: 15px;
+        color: #457b9d;
+    }
+    .login-link a {
+        color: #1d3557;
+        text-decoration: none;
+        font-weight: bold;
+    }
+</style>
+
+<div class="container">
+    <h1>Create Your TaskFlow Account</h1>
+
+    <!-- 
+        This form expects a Django form object named 'form' 
+        to be passed from the view (which you will set up next). 
+    -->
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Renders the registration form fields (e.g., username, email, password, password confirmation) -->
+        {{ form.as_p }}
+
+        <button type="submit">Register Account</button>
+    </form>
+
+    <p class="login-link">
+        Already have an account? <a href="{% url 'login' %}">Log In Here</a>
+    </p>
+</div>
+{% endblock content %}
