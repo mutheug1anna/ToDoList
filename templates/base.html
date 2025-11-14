@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TaskFlow To-Do{% endblock title %}</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for consistency -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding-top: 60px; /* Space for fixed header */
+            min-height: 100vh;
+            /* Default background for non-home pages (a clean light color) */
+            background-color: #f1faee; 
+        }
+        /* Custom font classes */
+        .fredoka-font {
+            font-family: 'Fredoka One', cursive;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Fixed Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full bg-white shadow-md z-10">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+            
+            <!-- Logo/Home Link -->
+            <a href="{% url 'home' %}" class="text-2xl fredoka-font text-[#1d3557] hover:text-[#e63946] transition duration-300">
+                TaskFlow
+            </a>
+            
+            <!-- Navigation Links -->
+            <div class="flex items-center space-x-4">
+                
+                {% if request.user.is_authenticated %}
+                    
+                    <!-- Links for LOGGED-IN Users -->
+                    <a href="{% url 'dashboard:dashboard_page' %}" class="text-[#1d3557] hover:text-[#e63946] font-medium transition duration-300">
+                        Dashboard
+                    </a>
+                    
+                    <span class="text-sm text-gray-500 hidden sm:inline">|</span>
+
+                    <!-- Logout Link -->
+                    <a href="{% url 'logout' %}" class="px-4 py-2 bg-[#e63946] text-white rounded-lg hover:bg-[#d1303c] transition duration-300 font-medium">
+                        Logout
+                    </a>
+
+                {% else %}
+
+                    <!-- Links for LOGGED-OUT Users (Guest/Marketing) -->
+                    <a href="{% url 'login' %}" class="text-[#1d3557] hover:text-[#e63946] font-medium transition duration-300">
+                        Login
+                    </a>
+                    
+                    <span class="text-sm text-gray-500 hidden sm:inline">|</span>
+
+                    <!-- Sign Up (Placeholder, you'll need a 'register' URL later) -->
+                    <a href="{% url 'login' %}" class="px-4 py-2 bg-[#457b9d] text-white rounded-lg hover:bg-[#386c8a] transition duration-300 font-medium">
+                        Sign Up
+                    </a>
+                    
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Block (where child templates inject their content) -->
+    <main class="container mx-auto">
+        {% block content %}
+        <!-- Default content if none is provided -->
+        {% endblock content %}
+    </main>
+
+</body>
+</html>
