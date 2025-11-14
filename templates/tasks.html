@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page_title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f4f6f8;
+        }
+        nav.nav {
+            background-color: #004aad;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav.nav h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        nav.nav a {
+            background-color: #ffc107;
+            color: black;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        nav.nav a:hover {
+            background-color: #e0a800;
+            color: black;
+            text-decoration: none;
+        }
+        .input {
+            max-width: 500px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .input h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #004aad;
+        }
+        .input label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+            font-size: 1rem;
+        }
+        .input input[type="text"],
+        .input input[type="number"],
+        .input input[type="date"] {
+            width: 100%;
+            height: 40px;
+            padding: 8px 12px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        .input input[type="text"]:focus,
+        .input input[type="number"]:focus,
+        .input input[type="date"]:focus {
+            outline: none;
+            border-color: #004aad;
+            box-shadow: 0 0 5px rgba(0, 74, 173, 0.5);
+        }
+        .input input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .input input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .input p {
+            text-align: center;
+            margin-top: 20px;
+            color: rgb(102, 102, 102);
+        }
+        .input a {
+            color: #004aad;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .input a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <h1>Welcome {{ user_name }}</h1>
+        <a href="{% url 'taskview' %}">View Tasks</a>
+    </nav>
+
+    <div class="input">
+        <form method="POST" action="{% url 'add_task' %}">
+            {% csrf_token %}
+            <h1>Add Task</h1>
+
+            <label for="task"><b>Task Name:</b></label>
+            <input type="text" name="task" id="task" placeholder="Add Task" required>
+
+            <label for="duration"><b>Duration (hours):</b></label>
+            <input type="number" name="duration" id="duration" placeholder="Duration" required>
+
+            <label for="date"><b>Due Date:</b></label>
+            <input type="date" name="dueDate" id="date" required>
+
+            <input type="submit" value="Add Task" id="addTask">
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const dateInput = document.getElementById('date');
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.value = today;
+            dateInput.min = today;
+        });
+    </script>
+</body>
+</html>
